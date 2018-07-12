@@ -11,7 +11,6 @@ from scrapy import signals
 import scrapy
 from notice.spiders.binance import BinanceSpider
 import requests
-import tweepy
 import random
 
 auth_tokens = [
@@ -48,12 +47,12 @@ auth_tokens = [
 ]
 
 
-class BinanceDownloadMiddleware():
-    def process_request(self, request, spider):
-        if isinstance(spider, BinanceSpider):
-            print('使用币安中间件')
-            response = requests.post(request.url)
-            return scrapy.http.Response(url=request.url, body=response.text.encode('utf8'))
+# class BinanceDownloadMiddleware():
+#     def process_request(self, request, spider):
+#         if isinstance(spider, BinanceSpider):
+#             print('使用币安中间件')
+#             response = requests.post(request.url)
+#             return scrapy.http.Response(url=request.url, body=response.text.encode('utf8'))
 
         # if isinstance(spider, TwitterSpider):
         #     token = random.choice(auth_tokens)
