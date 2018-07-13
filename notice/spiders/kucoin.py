@@ -2,7 +2,6 @@ import logging
 import re
 import datetime
 from notice.items import DayBaseNoticeItem
-from notice.settings import KUCOIN_CYCLE_TIME, CHECK_TIME_THRESHOLD
 from pyquery import PyQuery as pq
 import scrapy
 import time

@@ -3,7 +3,6 @@ import requests
 import time
 from notice.items import SecondBaseNoticeItem
 from pyquery import PyQuery as pq
-from notice.settings import GATEIO_CYCLE_TIME
 
 
 class GateioSpider(scrapy.Spider):
