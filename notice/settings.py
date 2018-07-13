@@ -58,7 +58,7 @@ USER_AGENT = random.choice(USER_AGENT_LIST)
 ROBOTSTXT_OBEY = False
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
-CONCURRENT_REQUESTS = 4
+# CONCURRENT_REQUESTS = 16
 
 # Configure a delay for requests for the same website (default: 0)
 # See https://doc.scrapy.org/en/latest/topics/settings.html#download-delay
@@ -164,8 +164,8 @@ DOWNLOAD_TIMEOUT = 20
 # 重试次数
 RETRY_TIMES = 0
 # 日志
-LOG_FILE = 'notice.log'
-LOG_LEVEL = 'INFO'
+# LOG_FILE = 'notice.log'
+# LOG_LEVEL = 'INFO'
 # 下载延时
 DOWNLOAD_DELAY = 1
 

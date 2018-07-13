@@ -20,7 +20,7 @@ class GateioSpider(scrapy.Spider):
             # time.sleep(GATEIO_CYCLE_TIME)
 
     def parse(self, response):
-        doc = pq(response.body.decode('utf8'))
+        doc = pq(response.body)
         notice_url = list(doc('#lcontentnews a').items())[0]
         detail_resp = requests.get(self.base_url + notice_url.attr('href'), headers=self.headers)
         doc = pq(detail_resp.text)
