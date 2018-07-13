@@ -30,3 +30,4 @@ class NoticePipeline(object):
             print('success to kafka--%s' % spider.name)
         else:
             logging.info("msg is null --%s" % spider.name)
+            print(("msg is null --%s" % spider.name))

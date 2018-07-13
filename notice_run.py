@@ -11,19 +11,20 @@ def cur_time():
     cur_time = now.strftime("%Y-%m-%d %H:%M:%S")
     return cur_time
 
-CYCLE_TIME = 1.5 * 60
+# 3分钟拉一次
+CYCLE_TIME = 3 * 60
 
 
 cmd = 'scrapy crawlall'
 
 
-i = 0
+i = 1
 while True:
+    logging.info("第{}轮开始执行,{}".format(i, cur_time()))
+    print("第{}轮开始执行,{}".format(i, cur_time()))
     subprocess.Popen(cmd, shell=True if os.name == 'posix' else False)
     i += 1
     time.sleep(CYCLE_TIME)
-    logging.info("第{}轮开始执行,{}".format(i, cur_time()))
-    print("第{}轮开始执行,{}".format(i, cur_time()))
 
 
 

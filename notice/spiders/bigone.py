@@ -26,15 +26,9 @@ class BigoneSpider(scrapy.Spider):
     notice_url = 'https://bigone.zendesk.com/hc/zh-cn/categories/115000217873'
 
     def start_requests(self, ):
-        # while True:
-            print("yield之前")
-            yield scrapy.Request(url=self.notice_url,
-                    dont_filter=True,
-                    callback=self.parse_item)
-            print("yield之后")
-            # time.sleep(BIGONE_CYCLE_TIME)
-            # time.sleep(1)
-            print("sleep之后")
+        yield scrapy.Request(url=self.notice_url,
+                dont_filter=True,
+                callback=self.parse_item)
 
     def parse_item(self, response):
         print("parse_item开始爬")

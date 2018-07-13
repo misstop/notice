@@ -164,8 +164,8 @@ DOWNLOAD_TIMEOUT = 20
 # 重试次数
 RETRY_TIMES = 0
 # 日志
-# LOG_FILE = 'notice.log'
-# LOG_LEVEL = 'INFO'
+LOG_FILE = 'notice.log'
+LOG_LEVEL = 'INFO'
 # 下载延时
 DOWNLOAD_DELAY = 1
 
