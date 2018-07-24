@@ -1,5 +1,6 @@
 from notice.items import SecondBaseNoticeItem
 import requests
+from notice.settings import HUOBIPRO_CYCLE_TIME, CHECK_TIME_THRESHOLD
 from pyquery import PyQuery as pq
 import scrapy
 import time

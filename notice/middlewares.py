@@ -6,44 +6,45 @@
 # https://doc.scrapy.org/en/latest/topics/spider-middleware.html
 
 import json
+from notice.settings import TWEEN_COUNT
 from scrapy import signals
 import scrapy
 from notice.spiders.binance import BinanceSpider
 import requests
 import random
 
-# auth_tokens = [
-#     {
-#         'consumer': {
-#             'consumer_key': '3LT1QDxdbzF1lXgzWTMIZ4Xw0',
-#             'consumer_secret': 'hHCieQP7yUFERI9XSxRotA25uXKE2Hw1lWCe2DLgXjRYSn3h9z'
-#             },
-#         'access': {
-#             'access_token': '882868123711307776-3CsSiWq1H461ezSdGl1l05wGEW78hCy',
-#             'access_token_secret': 'Lisxqgz0BIwrUtt3vqtnS0WUi8eyMv18gTyoLr9a6BSBg'
-#             }
-#     },
-#     {
-#         'consumer': {
-#             'consumer_key': 'UafXxpzgGISEqbx0Axgq1lj0X',
-#             'consumer_secret': 'vE3TuZpPlcQz1VsDZaibxspHIHoJNrJd0kwwUcxSlTY2NfWzIv'
-#             },
-#         'access': {
-#             'access_token': '882868123711307776-sQmqCPl1q4g3mwccvpEZLeSkdeZVyeW',
-#             'access_token_secret': 'ikeQZejSxrj1fRzhrdIdjXiSqoCLfSTk00mZOBiqfMJih'
-#             }
-#     },
-#     {
-#         'consumer': {
-#             'consumer_key': 'gSHX2OsuVgtmhSruVsbLmjof0',
-#             'consumer_secret': '2gsGG9z3NPKgYOTH8RE5KzGreLWTTYPiga0V0MzCd2Ma7N86Os'
-#             },
-#         'access': {
-#             'access_token': '882868123711307776-Haj2zgsvoPnpevDjylEfdzeAMvHYJ1l',
-#             'access_token_secret': 'BJgJ9VydFXvqtPO4kKokNYBH0h2Xq5QTwQD2Nqb3OCskc'
-#             }
-#     }
-# ]
+auth_tokens = [
+    {
+        'consumer': {
+            'consumer_key': '3LT1QDxdbzF1lXgzWTMIZ4Xw0',
+            'consumer_secret': 'hHCieQP7yUFERI9XSxRotA25uXKE2Hw1lWCe2DLgXjRYSn3h9z'
+            },
+        'access': {
+            'access_token': '882868123711307776-3CsSiWq1H461ezSdGl1l05wGEW78hCy',
+            'access_token_secret': 'Lisxqgz0BIwrUtt3vqtnS0WUi8eyMv18gTyoLr9a6BSBg'
+            }
+    },
+    {
+        'consumer': {
+            'consumer_key': 'UafXxpzgGISEqbx0Axgq1lj0X',
+            'consumer_secret': 'vE3TuZpPlcQz1VsDZaibxspHIHoJNrJd0kwwUcxSlTY2NfWzIv'
+            },
+        'access': {
+            'access_token': '882868123711307776-sQmqCPl1q4g3mwccvpEZLeSkdeZVyeW',
+            'access_token_secret': 'ikeQZejSxrj1fRzhrdIdjXiSqoCLfSTk00mZOBiqfMJih'
+            }
+    },
+    {
+        'consumer': {
+            'consumer_key': 'gSHX2OsuVgtmhSruVsbLmjof0',
+            'consumer_secret': '2gsGG9z3NPKgYOTH8RE5KzGreLWTTYPiga0V0MzCd2Ma7N86Os'
+            },
+        'access': {
+            'access_token': '882868123711307776-Haj2zgsvoPnpevDjylEfdzeAMvHYJ1l',
+            'access_token_secret': 'BJgJ9VydFXvqtPO4kKokNYBH0h2Xq5QTwQD2Nqb3OCskc'
+            }
+    }
+]
 
 
 # class BinanceDownloadMiddleware():

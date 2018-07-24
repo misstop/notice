@@ -25,13 +25,16 @@ class OkexSpider(scrapy.Spider):
     name = 'fcoin.com'
     base_url = 'https://support.fcoin.com'
     notice_url = 'https://support.fcoin.com/hc/zh-cn/categories/360000333493-%E5%85%AC%E5%91%8A%E4%B8%AD%E5%BF%83'
+    start_urls = [
+        'https://support.fcoin.com/hc/zh-cn/sections/360000782633-%E6%9C%80%E6%96%B0%E5%85%AC%E5%91%8A',
+        'https://support.fcoin.com/hc/zh-cn/sections/360001401593-%E5%88%9B%E4%B8%9A%E6%9D%BF'
+    ]
+    # def start_requests(self, ):
+    #     yield scrapy.Request(url=self.notice_url,
+    #                          dont_filter=True,
+    #                          callback=self.parse_notice)
 
-    def start_requests(self, ):
-        yield scrapy.Request(url=self.notice_url,
-                             dont_filter=True,
-                             callback=self.parse_notice)
-
-    def parse_notice(self, response):
+    def parse(self, response):
         doc = pq(response.body.decode('utf8'))
         notice = list(doc('.article-list li').items())[0]
         detail_url = notice('a').attr('href')

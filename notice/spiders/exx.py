@@ -4,6 +4,7 @@ import json
 import time
 from notice.items import SecondBaseNoticeItem
 from pyquery import PyQuery as pq
+from notice.settings import SECOND_BASE_CYCLE_IME
 import requests
 
 class ExxSpider(scrapy.Spider):

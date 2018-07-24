@@ -18,11 +18,12 @@ def cur_time():
 
 class NoticePipeline(object):
     def __init__(self):
-        self.producer = KafkaProducer(bootstrap_servers=kafka_con,
-                                      value_serializer=lambda v: json.dumps(v).encode('utf-8'))
+        self.producer = KafkaProducer(bootstrap_servers=kafka_con, api_version=(0, 10, 1),
+                                     value_serializer=lambda v: json.dumps(v).encode('utf-8'))
    
     def process_item(self, item, spider):
         dic = dict(item)
+        time.sleep(1)
         if dic:
             self.producer.send(kafka_topic, dic)
             self.producer.flush()
@@ -30,4 +31,3 @@ class NoticePipeline(object):
             print('success to kafka--%s' % spider.name)
         else:
             logging.info("msg is null --%s" % spider.name)
-            print(("msg is null --%s" % spider.name))

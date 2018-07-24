@@ -2,8 +2,7 @@ import subprocess
 import time
 import os
 import datetime
-import logging
-
+from apscheduler.schedulers.blocking import BlockingScheduler
 
 # 时间戳转换为时间
 def cur_time():
@@ -11,22 +10,21 @@ def cur_time():
     cur_time = now.strftime("%Y-%m-%d %H:%M:%S")
     return cur_time
 
-# 3分钟拉一次
-CYCLE_TIME = 3 * 60
-
 
 cmd = 'scrapy crawlall'
+i = 0
 
 
-i = 1
-while True:
-    logging.info("第{}轮开始执行,{}".format(i, cur_time()))
-    print("第{}轮开始执行,{}".format(i, cur_time()))
+def run():
+    global i
     subprocess.Popen(cmd, shell=True if os.name == 'posix' else False)
     i += 1
-    time.sleep(CYCLE_TIME)
+    print("第{}轮开始执行,{}".format(i, cur_time()))
 
 
-
+SCHEDULER = BlockingScheduler()
+if __name__ == '__main__':
+    SCHEDULER.add_job(func=run, trigger='interval', minutes=2)
+    SCHEDULER.start()
 
 

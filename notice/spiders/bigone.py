@@ -2,7 +2,7 @@ import logging
 import re
 import datetime
 from notice.items import SecondBaseNoticeItem
-# from notice.settings import BIGONE_CYCLE_TIME, CHECK_TIME_THRESHOLD
+from notice.settings import BIGONE_CYCLE_TIME, CHECK_TIME_THRESHOLD
 from pyquery import PyQuery as pq
 import scrapy
 import time
@@ -26,9 +26,15 @@ class BigoneSpider(scrapy.Spider):
     notice_url = 'https://bigone.zendesk.com/hc/zh-cn/categories/115000217873'
 
     def start_requests(self, ):
-        yield scrapy.Request(url=self.notice_url,
-                dont_filter=True,
-                callback=self.parse_item)
+        # while True:
+            print("yield之前")
+            yield scrapy.Request(url=self.notice_url,
+                    dont_filter=True,
+                    callback=self.parse_item)
+            print("yield之后")
+            # time.sleep(BIGONE_CYCLE_TIME)
+            # time.sleep(1)
+            print("sleep之后")
 
     def parse_item(self, response):
         print("parse_item开始爬")

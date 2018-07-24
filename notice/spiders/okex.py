@@ -1,4 +1,5 @@
 from notice.items import SecondBaseNoticeItem
+from notice.settings import OKEX_CYCLE_TIME, CHECK_TIME_THRESHOLD
 from pyquery import PyQuery as pq
 import scrapy
 import time

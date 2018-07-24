@@ -3,6 +3,7 @@ import requests
 import time
 from notice.items import SecondBaseNoticeItem
 from pyquery import PyQuery as pq
+from notice.settings import GATEIO_CYCLE_TIME
 
 
 class GateioSpider(scrapy.Spider):
@@ -20,7 +21,7 @@ class GateioSpider(scrapy.Spider):
             # time.sleep(GATEIO_CYCLE_TIME)
 
     def parse(self, response):
-        doc = pq(response.body)
+        doc = pq(response.body.decode('utf8'))
         notice_url = list(doc('#lcontentnews a').items())[0]
         detail_resp = requests.get(self.base_url + notice_url.attr('href'), headers=self.headers)
         doc = pq(detail_resp.text)

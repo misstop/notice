@@ -3,6 +3,7 @@ import requests
 import json
 import time
 from pyquery import PyQuery as pq
+from notice.settings import BINANCE_CYCLE_TIME, CHECK_TIME_THRESHOLD
 from notice.items import SecondBaseNoticeItem
 import datetime
 
