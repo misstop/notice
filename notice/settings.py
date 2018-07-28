@@ -32,8 +32,8 @@ COMMANDS_MODULE = 'notice.commands'
 #CONCURRENT_REQUESTS_PER_DOMAIN = 16
 #CONCURRENT_REQUESTS_PER_IP = 16
 
-# Disable cookies (enabled by default)
-#COOKIES_ENABLED = False
+# Disable cookies (enabled by default) .
+COOKIES_ENABLED = False
 
 # Disable Telnet Console (enabled by default)
 #TELNETCONSOLE_ENABLED = False
@@ -134,4 +134,4 @@ LOG_LEVEL = 'INFO'
 # 超时关闭
 CLOSESPIDER_TIMEOUT = 120
 # 下载延时
-DOWNLOAD_DELAY = 0.2
+DOWNLOAD_DELAY = 0.5
