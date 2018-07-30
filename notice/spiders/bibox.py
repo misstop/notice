@@ -23,7 +23,7 @@ def utc2local(utc_date):
 class BiboxSpider(scrapy.Spider):
     name = 'bibox.com'
     base_url="https://bibox.zendesk.com"
-    notice_url = 'https://bibox.zendesk.com/hc/api/internal/recent_activities?locale=zh-cn&page=1&per_page=1&locale=zh-cn'
+    notice_url = 'https://bibox.zendesk.com/hc/api/internal/recent_activities?locale=zh-cn&page=1&per_page=5&locale=zh-cn'
 
     def start_requests(self, ):
         # while True:
@@ -37,22 +37,23 @@ class BiboxSpider(scrapy.Spider):
         response_json = json.loads(response.body.decode('utf8'))
         if not response_json['activities']:
             return
-        notice = response_json['activities'][0]
+        # notice = response_json['activities']
 
         item = SecondBaseNoticeItem()
-        item['name'] = 'Bibox'
-        item['resource'] = 'bibox.com'
+        for notice in response_json['activities']:
+            item['name'] = 'Bibox'
+            item['resource'] = 'bibox.com'
 
-        item['url'] = self.base_url+notice['url']
+            item['url'] = self.base_url+notice['url']
 
-        doc_detail=pq(requests.get(item['url']).text)
-        item['title'] = doc_detail('.article-header h1').text()
-        item['main'] =doc_detail('.article-body').text()
+            doc_detail=pq(requests.get(item['url']).text)
+            item['title'] = doc_detail('.article-header h1').text()
+            item['main'] =doc_detail('.article-body').text()
 
-        date = doc_detail('.meta-data time').attr('datetime')
+            date = doc_detail('.meta-data time').attr('datetime')
 
-        item['time'] = utc2local(date).strftime("%Y-%m-%d %H:%M:%S")
+            item['time'] = utc2local(date).strftime("%Y-%m-%d %H:%M:%S")
 
-        logging.log(logging.DEBUG, '[BITFINE] Get item:', item)
-        yield item
+            logging.log(logging.DEBUG, '[BITFINE] Get item:', item)
+            yield item
 
