@@ -22,13 +22,19 @@ class NoticePipeline(object):
                                      value_serializer=lambda v: json.dumps(v).encode('utf-8'))
    
     def process_item(self, item, spider):
-        keywords = ['上币', '上线', '上市', '币种', '新币', '상장일시', '开启', '上架', 'add', 'New quote currency']
+        up_keywords = ['上币', '上线', '上市', '币种', '新币', '상장일시', '开启', '上架', '换币', 'add', 'New quote currency',
+                       '首发', '开放', '开通', '登陆']
+        down_keywords = ['下线', '下币', '下架', '关闭', 'delist']
         dic = dict(item)
         if "title" in dic.keys():
             dic['noticeType'] = 1
-            for _ in keywords:
+            for _ in up_keywords:
                 if _ in dic['title']:
                     dic['noticeType'] = 2
+                    break
+            for d in down_keywords:
+                if d in dic['title']:
+                    dic['noticeType'] = 3
                     break
             time.sleep(1)
             self.producer.send(kafka_topic, dic)
@@ -36,4 +42,8 @@ class NoticePipeline(object):
             logging.info('success to kafka--%s' % spider.name)
             print('success to kafka--%s' % spider.name)
         else:
-            logging.info("msg is null --%s" % spider.name)
+            logging.error("msg is null --%s" % spider.name)
+
+    def on_close(self, spider):
+        self.producer.close()
+        logging.info('%s----kafka already close' % spider.name)
