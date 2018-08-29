@@ -56,7 +56,7 @@ class PoloniexSpider(scrapy.Spider):
         url = "https://twitter.com/" + str(jsonData['user']['screen_name']) + "/status/" + str(Id)
         item = SecondBaseNoticeItem()
         item['name'] = 'poloniex'
-        item['resource'] = 'twitter.com/poloniex'
+        item['resource'] = 'poloniex.com'
         item['url'] = url
         item['title'] = title
         item['main'] = content

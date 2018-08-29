@@ -16,6 +16,8 @@ class SecondBaseNoticeItem(scrapy.Item):
     time = scrapy.Field()  # 时间
     url = scrapy.Field()  # url
     main = scrapy.Field()  # 内容
+    # coinTime = scrapy.Field()   # 上币时间
+    # coinName = scrapy.Field()   # 上币的名字
 
 
 class DayBaseNoticeItem(scrapy.Item):
@@ -26,3 +28,5 @@ class DayBaseNoticeItem(scrapy.Item):
     time = scrapy.Field()  # 时间
     url = scrapy.Field()  # url
     main = scrapy.Field()  # 内容
+    # coinTime = scrapy.Field()   # 上币时间
+    # coinName = scrapy.Field()   # 上币的名字

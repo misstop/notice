@@ -5,6 +5,7 @@ from pyquery import PyQuery as pq
 import scrapy
 import time
 import json
+import re
 
 
 class HuobiproSpider(scrapy.Spider):
@@ -47,8 +48,26 @@ class HuobiproSpider(scrapy.Spider):
         content = json.loads(content)
         if not content['success']:
             return
-        item['main'] = pq(content['data']['content']).text()
+        details = pq(content['data']['content']).text()
+        item['main'] = details
         print("第一个item")
+        ls = ['上线', '全球首发']
+        for l in ls:
+            if l in notice['title']:
+                c = notice['title'].split(l)
+                sTime = re.search(r'(\d+)月(\d+)日(\d+):(\d+)', c[0])
+                coinName = c[1]
+                coinTime = "2018-%s-%s %s-%s-00" % (sTime.group(1), sTime.group(2), sTime.group(3), sTime.group(4))
+                data = {
+                    "shop": 'huobipro',
+                    "coinName": coinName,
+                    "dateTime": coinTime,
+                    "content": details,
+                }
+                requests.post(
+                    'http://47.75.122.224/filterApi.php?insertTweet=True', data=data
+                )
+                break
         yield item
         # --------------------------------------------------------------------
         response_json = json.loads(response.body.decode('utf8'))
@@ -77,8 +96,26 @@ class HuobiproSpider(scrapy.Spider):
         content = json.loads(content)
         if not content['success']:
             return
-        item['main'] = pq(content['data']['content']).text()
+        details = pq(content['data']['content']).text()
+        item['main'] = details
         print("第二个item")
+        ls = ['上线', '全球首发']
+        for l in ls:
+            if l in notice['title']:
+                c = notice['title'].split(l)
+                sTime = re.search(r'(\d+)月(\d+)日(\d+):(\d+)', c[0])
+                coinName = c[1]
+                coinTime = "2018-%s-%s %s-%s-00" % (sTime.group(1), sTime.group(2), sTime.group(3), sTime.group(4))
+                data = {
+                    "shop": 'huobipro',
+                    "coinName": coinName,
+                    "dateTime": coinTime,
+                    "content": details,
+                }
+                requests.post(
+                    'http://47.75.122.224/filterApi.php?insertTweet=True', data=data
+                )
+                break
         yield item
 
 

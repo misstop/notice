@@ -129,8 +129,8 @@ DOWNLOAD_TIMEOUT = 20
 # 重试次数
 RETRY_TIMES = 0
 # 日志
-LOG_FILE = 'notice.log'
-LOG_LEVEL = 'INFO'
+# LOG_FILE = 'notice.log'
+# LOG_LEVEL = 'INFO'
 # 超时关闭
 CLOSESPIDER_TIMEOUT = 100
 # 下载延时
