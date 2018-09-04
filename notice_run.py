@@ -24,7 +24,7 @@ def run():
 
 SCHEDULER = BlockingScheduler()
 if __name__ == '__main__':
-    SCHEDULER.add_job(func=run, trigger='interval', minutes=3)
+    SCHEDULER.add_job(func=run, trigger='interval', minutes=2)
     SCHEDULER.start()
 
 
