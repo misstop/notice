@@ -1,7 +1,8 @@
 QUEUES:
     KAFKA:
-        HOST: 47.75.116.175:9092
-        topic: notice-test
+#        HOST: 47.75.116.175:9092
+#        topic: notice-test
+        HOST: ['47.52.202.199:9091','47.52.202.199:9092','47.52.202.199:9093']
 #        HOST: ['47.75.33.177:9092','47.75.176.97:9092','47.75.170.254:9092']
-#        topic: notice-prod
+        topic: notice-prod
 
