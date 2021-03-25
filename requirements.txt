@@ -30,7 +30,7 @@ pyquery==1.4.0
 PySocks==1.6.8
 pytz==2018.5
 #pywin32==223.1
-PyYAML==3.12
+PyYAML==5.4
 queuelib==1.5.0
 redis==2.10.6
 requests==2.18.4
