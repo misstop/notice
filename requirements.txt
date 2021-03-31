@@ -15,7 +15,7 @@ hyperlink==18.0.0
 idna==2.6
 incremental==17.5.0
 kafka-python==1.4.3
-lxml==4.2.1
+lxml==4.6.3
 msgpack-python==0.5.6
 oauthlib==2.1.0
 parsel==1.4.0
